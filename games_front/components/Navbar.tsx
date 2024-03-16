@@ -62,8 +62,8 @@ export default function Navbar() {
             <Link href='/'  className="font-overpass mx-5">Slots</Link>
         </div>
         <div className="flex-none ml-5">
-            { isConnected && <Link className='mr-10' href='/dashboard'>Dashboard</Link>}
             {!showConnectButton && <ConnectButton label="Sign In" />}
+            { isConnected && <Link className='mr-10' href='/dashboard'>Dashboard</Link>}
         </div>
         </div> 
     );

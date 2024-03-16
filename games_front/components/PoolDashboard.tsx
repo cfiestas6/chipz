@@ -1,22 +1,58 @@
+'use client'
 import PoolCard from './PoolCard';
 import { useEffect, useState } from 'react';
 import { useWriteContract, useAccount } from 'wagmi';
 import contractABI from '../constants/abi.json';
+import { celoAlfajores } from "viem/chains";
+import { Chain } from '@rainbow-me/rainbowkit';
+import {
+    createPublicClient,
+    createWalletClient,
+    custom,
+    getContract,
+    http,
+    parseEther,
+    stringToHex,
+} from "viem";
 
 const contractAddress = "0x93C1bb0A43DCB409d87354959753b71b6Bf30B15";
+const celoContractAddress = "0x39b43751befc0454cbd233d95bb94afb1768efd006dca9e91a17eb4e8fd92f52";
 
 export default function PoolDashboard() {
     const { data: hash, writeContract, error } = useWriteContract() 
     const { address } = useAccount();
     const [earnings, setEarnings] = useState(0)
 
+    const [showConnectButton, setShowConnectButton] = useState<boolean>(true);
+    const [walletAddress, setWalletAddress] = useState<string | null>(null);
+
+    const publicClient = createPublicClient({
+        chain: celoAlfajores as Chain,
+        transport: http(),
+    });
+
+    const getUserAddress = async () => {
+        if (typeof window !== "undefined" && window.ethereum && window.ethereum.isMiniPay) {
+            setShowConnectButton(true);
+            let walletClient = createWalletClient({
+                transport: custom(window.ethereum),
+                chain: celoAlfajores as Chain,
+            });
+            let [address] = await walletClient.getAddresses();
+            setWalletAddress(address);
+        }
+        else {
+            setShowConnectButton(false);
+        }
+    };
+
+    useEffect(() => {
+        getUserAddress();
+    }, []);
+
     const handleClick = () => {
         setEarnings(earnings + 1)
     }
-
-    useEffect(() => {
-        console.log({error})
-    }, [error])
 
     async function handleCreatePool(e: any) {
         console.log({address})

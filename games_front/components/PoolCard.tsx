@@ -2,7 +2,7 @@ import contractABI from '../constants/abi.json';
 
 export default function PoolCard({ sport, date, lA, lB, lX, teamA, teamB }: any) {
 
-    async function handleBet(e: any) {
+    async function handleLiquidity(e: any) {
         e.preventDefault();
         // ex
 
@@ -31,7 +31,7 @@ export default function PoolCard({ sport, date, lA, lB, lX, teamA, teamB }: any)
         <button onClick={() => (document.getElementById('my_modal_1') as HTMLDialogElement)?.showModal()} className="btn bg-white min-w-[6rem]">Liquidity A: {lA}</button>
 
         <dialog id="my_modal_1" className="modal">
-        <form onSubmit={handleBet}>
+        <form onSubmit={handleLiquidity}>
   <div className="modal-box">
     <h3 className="font-bold text-lg">{sport} | {teamA}  VS  {teamB}</h3>
     <p className="py-4">Add liquidity (ETH)</p>
