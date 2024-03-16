@@ -17,7 +17,6 @@ import {
     stringToHex,
 } from "viem";
 
-
 export default function Navbar() {
     const { isConnected } = useAccount();
     const [showConnectButton, setShowConnectButton] = useState<boolean>(true);
@@ -63,7 +62,7 @@ export default function Navbar() {
         </div>
         <div className="flex-none ml-5">
             {!showConnectButton && <ConnectButton label="Sign In" />}
-            { isConnected && <Link className='mr-10' href='/dashboard'>Dashboard</Link>}
+            { isConnected || address !== 'undefined' && <Link className='mr-10' href='/dashboard'>Dashboard</Link>}
         </div>
         </div> 
     );

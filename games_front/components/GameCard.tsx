@@ -1,6 +1,5 @@
 import { useEffect, useState } from 'react';
 import { useWriteContract, useAccount } from 'wagmi';
-import { readContract } from '@wagmi/core';
 import contractABI from '../constants/abi.json';
 import { lightTheme, getDefaultConfig, Chain, RainbowKitProvider } from '@rainbow-me/rainbowkit';
 import next from 'next';
@@ -55,19 +54,14 @@ export default function GameCard({ sport, date, a, b, x, teamA, teamB }: any) {
 
         let poolId = Number(balance) - 1;
         
-        // const modal = document.getElementById('my_modal_1') as HTMLDialogElement;
-        // if (modal) {
-        //     modal.close();
-        // }
         writeContract({ 
             address: contractAddress, 
             abi: contractABI, 
             functionName: 'placeBet', 
             args: [poolId, team, amount], 
         })
-
-        
     }
+
     return (
         <div className="card border-2 bg-[#ffffff] shadow-md border-red card-compact w-96">
   <div className="card-body">
