@@ -21,10 +21,26 @@ const chiliz = {
   contracts: {},
 } as const satisfies Chain;
 
+const alfajores = {
+  id: 44787, 
+  name: 'Alfajores',
+  iconUrl: 'https://s2.coinmarketcap.com/static/img/coins/64x64/5805.png',
+  iconBackground: '#fff',
+  nativeCurrency: { name: 'Alfajores', symbol: 'CELO', decimals: 18 },
+  rpcUrls: {
+    default: { http: ['https://alfajores-forno.celo-testnet.org	'] },
+  },
+  blockExplorers: {
+    default: { name: 'CeloScan', url: 'https://alfajores.celoscan.io' },
+  },
+  contracts: {},
+} as const satisfies Chain;
+
+
 const config = getDefaultConfig({
   appName: 'Chipz',
   projectId: '80b20ac8262281b421d6684fc3857b5d',
-  chains: [chiliz],
+  chains: [chiliz, alfajores],
 });
 
 const client = new QueryClient();
