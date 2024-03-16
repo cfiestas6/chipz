@@ -45,6 +45,8 @@ export default function PoolDashboard() {
 </select>
         <p className='my-2'>Team A inital amount</p>
         <input type="text" placeholder="Team A amount (ETH)" className="input input-bordered w-full max-w-xs" />
+        <p className='my-2'>X inital amount</p>
+        <input type="text" placeholder="X amount (ETH)" className="input input-bordered w-full max-w-xs" />
         <p className='my-2'>Team B inital amount</p>
         <input type="text" placeholder="Team B amount (ETH)" className="input input-bordered w-full max-w-xs" />
         <button onClick={handleCreatePool} className="btn mt-5 text-white bg-red">Create Bet Pool</button>

@@ -1,7 +1,8 @@
-import { useContract, useSigner } from 'wagmi';
+import { useContract, configureChains, useSigner } from 'wagmi';
+import { jsonRpcProvider } from 'wagmi/providers/jsonRpc';
 import contractABI from '../path/to/your/contractABI.json';
 
-const contractAddress = "YOUR_CONTRACT_ADDRESS";
+const contractAddress = "0xA313135090bb7EA9f308ef08eeB7B61CD826115f";
 
 export function useChipzContract() {
   const { data: signer } = useSigner();
