@@ -18,11 +18,7 @@ const chiliz = {
   blockExplorers: {
     default: { name: 'ChilizScan', url: 'https://testnet.chiliscan.com/' },
   },
-  contracts: {
-    multicall3: {
-      address: '0x93C1bb0A43DCB409d87354959753b71b6Bf30B15',
-    },
-  },
+  contracts: {},
 } as const satisfies Chain;
 
 const config = getDefaultConfig({

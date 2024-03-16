@@ -1,14 +1,13 @@
 import PoolCard from './PoolCard';
 import { useEffect, useState } from 'react';
 import { useWriteContract, useAccount } from 'wagmi';
-
 import contractABI from '../constants/abi.json';
 
 const contractAddress = "0x93C1bb0A43DCB409d87354959753b71b6Bf30B15";
 
 export default function PoolDashboard() {
     const { data: hash, writeContract, error } = useWriteContract() 
-    const { isConnected, address } = useAccount();
+    const { address } = useAccount();
     const [earnings, setEarnings] = useState(0)
 
     const handleClick = () => {
@@ -20,9 +19,11 @@ export default function PoolDashboard() {
     }, [error])
 
     async function handleCreatePool(e: any) {
-        console.log('You clicked me');
         console.log({address})
         e.preventDefault();
+
+        // approve
+        // execute
         writeContract({ 
             address: contractAddress, 
             abi: contractABI, 
