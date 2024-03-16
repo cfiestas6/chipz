@@ -1,3 +1,4 @@
+'use client'
 import { ConnectButton } from '@rainbow-me/rainbowkit';
 import { useAccount } from 'wagmi';
 import Image from 'next/image';
@@ -16,10 +17,10 @@ import {
     stringToHex,
 } from "viem";
 
-const cUSDTokenAddress = "0x874069Fa1Eb16D44d622F2e0Ca25eeA172369bC1"; // Testnet
 
 export default function Navbar() {
     const { isConnected } = useAccount();
+    const [showConnectButton, setShowConnectButton] = useState<boolean>(true);
     const [address, setAddress] = useState<string | null>(null);
 
     const publicClient = createPublicClient({
@@ -28,7 +29,8 @@ export default function Navbar() {
     });
 
     const getUserAddress = async () => {
-        if (typeof window !== "undefined" && window.ethereum) {
+        if (typeof window !== "undefined" && window.ethereum && window.ethereum.isMiniPay) {
+            setShowConnectButton(true);
             let walletClient = createWalletClient({
                 transport: custom(window.ethereum),
                 chain: celoAlfajores as Chain,
@@ -36,6 +38,9 @@ export default function Navbar() {
 
             let [address] = await walletClient.getAddresses();
             setAddress(address);
+        }
+        else {
+            setShowConnectButton(false);
         }
     };
 
@@ -58,7 +63,7 @@ export default function Navbar() {
         </div>
         <div className="flex-none ml-5">
             { isConnected && <Link className='mr-10' href='/dashboard'>Dashboard</Link>}
-            {!window.ethereum.isMiniPay && <ConnectButton label="Sign In" />}
+            {showConnectButton && <ConnectButton label="Sign In" />}
         </div>
         </div> 
     );

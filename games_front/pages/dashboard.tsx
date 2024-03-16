@@ -31,3 +31,9 @@ const Home: NextPage = () => {
 };
 
 export default Home;
+
+declare global {
+    interface Window {
+        ethereum?: any;
+    }
+}

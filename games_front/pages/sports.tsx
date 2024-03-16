@@ -25,3 +25,9 @@ const Sports: NextPage = () => {
 };
 
 export default Sports;
+
+declare global {
+    interface Window {
+        ethereum?: any;
+    }
+}

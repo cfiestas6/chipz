@@ -59,3 +59,9 @@ function MyApp({ Component, pageProps }: AppProps) {
 }
 
 export default MyApp;
+
+declare global {
+    interface Window {
+        ethereum?: any;
+    }
+}
