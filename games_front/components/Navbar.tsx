@@ -63,7 +63,7 @@ export default function Navbar() {
         </div>
         <div className="flex-none ml-5">
             { isConnected && <Link className='mr-10' href='/dashboard'>Dashboard</Link>}
-            {showConnectButton && <ConnectButton label="Sign In" />}
+            {!showConnectButton && <ConnectButton label="Sign In" />}
         </div>
         </div> 
     );
