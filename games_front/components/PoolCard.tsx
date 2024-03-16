@@ -1,11 +1,9 @@
-import Link from 'next/link';
-// import { abi, contractAddress } from '../constants';
+import contractABI from '../constants/abi.json';
 
 export default function PoolCard({ sport, date, lA, lB, lX, teamA, teamB }: any) {
-    function handleBet() {
-        console.log('You clicked me');
 
-        // execute tx
+    async function handleBet() {
+        //
 
         const modal = document.getElementById('my_modal_1') as HTMLDialogElement;
         if (modal) {

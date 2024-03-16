@@ -3,31 +3,32 @@ import Navbar from '../components/Navbar';
 import '@rainbow-me/rainbowkit/styles.css';
 import type { AppProps } from 'next/app';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
+import { lightTheme, getDefaultConfig, Chain, RainbowKitProvider } from '@rainbow-me/rainbowkit';
 import { WagmiProvider } from 'wagmi';
-import {
-  arbitrum,
-  base,
-  mainnet,
-  optimism,
-  polygon,
-  sepolia,
-  zora,
-} from 'wagmi/chains';
-import { getDefaultConfig, lightTheme, RainbowKitProvider } from '@rainbow-me/rainbowkit';
+
+const chiliz = {
+  id: 88882, 
+  name: 'Chiliz',
+  iconUrl: 'https://s2.coinmarketcap.com/static/img/coins/64x64/5805.png',
+  iconBackground: '#fff',
+  nativeCurrency: { name: 'Chiliz', symbol: 'CHZ', decimals: 18 },
+  rpcUrls: {
+    default: { http: ['https://chiliz-spicy.publicnode.com'] },
+  },
+  blockExplorers: {
+    default: { name: 'ChilizScan', url: 'https://testnet.chiliscan.com/' },
+  },
+  contracts: {
+    multicall3: {
+      address: '0x93C1bb0A43DCB409d87354959753b71b6Bf30B15',
+    },
+  },
+} as const satisfies Chain;
 
 const config = getDefaultConfig({
-  appName: 'RainbowKit App',
-  projectId: 'YOUR_PROJECT_ID',
-  chains: [
-    mainnet,
-    polygon,
-    optimism,
-    arbitrum,
-    base,
-    zora,
-    ...(process.env.NEXT_PUBLIC_ENABLE_TESTNETS === 'true' ? [sepolia] : []),
-  ],
-  ssr: true,
+  appName: 'Chipz',
+  projectId: '80b20ac8262281b421d6684fc3857b5d',
+  chains: [chiliz],
 });
 
 const client = new QueryClient();

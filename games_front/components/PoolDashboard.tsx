@@ -1,21 +1,39 @@
-import { useAccount } from 'wagmi';
 import PoolCard from './PoolCard';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
+import { useWriteContract, useAccount } from 'wagmi';
+
+import contractABI from '../constants/abi.json';
+
+const contractAddress = "0x93C1bb0A43DCB409d87354959753b71b6Bf30B15";
 
 export default function PoolDashboard() {
+    const { data: hash, writeContract, error } = useWriteContract() 
+    const { isConnected, address } = useAccount();
     const [earnings, setEarnings] = useState(0)
 
     const handleClick = () => {
         setEarnings(earnings + 1)
     }
 
-    function handleCreatePool() {
+    useEffect(() => {
+        console.log({error})
+    }, [error])
+
+    async function handleCreatePool(e: any) {
         console.log('You clicked me');
-        // execute tx
-        const modal = document.getElementById('my_modal_2') as HTMLDialogElement;
+        console.log({address})
+        e.preventDefault();
+        writeContract({ 
+            address: contractAddress, 
+            abi: contractABI, 
+            functionName: 'createPool', 
+            args: ['38973', '0x0cC32f87F0940727e1158C64E0e69fD14DaC7148', '0x5f223830171f04e3a66F43653F4472A540E7dacb', '10'], 
+        })
+
+        /*const modal = document.getElementById('my_modal_2') as HTMLDialogElement;
         if (modal) {
             modal.close();
-        }
+        }*/
     }
 
     return (
@@ -38,6 +56,7 @@ export default function PoolDashboard() {
         <h3 className="font-bold text-4xl">Create Bet Pool</h3>
         <p className="py-4">Select an event and set the amount of ETH</p>
 
+        <form onSubmit={handleCreatePool}>
     <select className="select my-3 select-bordered ">
   <option disabled selected>Select Event</option>
   <option>Real Madrid VS FC Barcelona | 00/00/00 </option>
@@ -49,7 +68,9 @@ export default function PoolDashboard() {
         <input type="text" placeholder="X amount (ETH)" className="input input-bordered w-full max-w-xs" />
         <p className='my-2'>Team B inital amount</p>
         <input type="text" placeholder="Team B amount (ETH)" className="input input-bordered w-full max-w-xs" />
-        <button onClick={handleCreatePool} className="btn mt-5 text-white bg-red">Create Bet Pool</button>
+        <button type='submit' className="btn mt-5 text-white bg-red">Create Bet Pool</button>
+        {hash && <p>{hash}</p>}
+    </form>
     </div>
   </div>
     </dialog>

@@ -8,10 +8,10 @@ export default function Card({ image, href, title }: any) {
          <figure>
           <Image className='rounded-t-2xl' src={image} alt={title} width={500} height={500} />
          </figure>
+        </Link>
          <div className="card-body">
             <h2 className="font-overpass card-title">{title}</h2>
         </div>
-        </Link>
         </div>
     )
 }
