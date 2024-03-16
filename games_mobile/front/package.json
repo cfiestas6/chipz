@@ -1,0 +1,32 @@
+{
+  "name": "frontend",
+  "private": true,
+  "version": "0.1.0",
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint"
+  },
+  "dependencies": {
+    "@celo/rainbowkit-celo": "^1.1.2",
+    "@tanstack/react-query": "^5.18.1",
+    "autoprefixer": "^10.4.18",
+    "ethers": "^6.11.1",
+    "next": "^14.0.4",
+    "postcss": "^8.4.35",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "viem": "^2.7.3",
+    "wagmi": "^2.5.7"
+  },
+  "devDependencies": {
+    "@types/node": "^18.19.3",
+    "@types/react": "^18.2.43",
+    "daisyui": "^4.7.3",
+    "eslint": "^8.15.0",
+    "eslint-config-next": "^14.0.4",
+    "tailwindcss": "^3.4.1",
+    "typescript": "^5.0.4"
+  }
+}
