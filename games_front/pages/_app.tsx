@@ -9,7 +9,7 @@ import { WagmiProvider } from 'wagmi';
 const chiliz = {
   id: 88882, 
   name: 'Chiliz',
-  iconUrl: 'https://s2.coinmarketcap.com/static/img/coins/64x64/5805.png',
+  iconUrl: 'https://seeklogo.com/images/C/chiliz-chz-logo-605C6C40F6-seeklogo.com.png',
   iconBackground: '#fff',
   nativeCurrency: { name: 'Chiliz', symbol: 'CHZ', decimals: 18 },
   rpcUrls: {
@@ -24,7 +24,7 @@ const chiliz = {
 const alfajores = {
   id: 44787, 
   name: 'Alfajores',
-  iconUrl: 'https://s2.coinmarketcap.com/static/img/coins/64x64/5805.png',
+  iconUrl: 'https://cryptologos.cc/logos/celo-celo-logo.png?v=029',
   iconBackground: '#fff',
   nativeCurrency: { name: 'Alfajores', symbol: 'CELO', decimals: 18 },
   rpcUrls: {
