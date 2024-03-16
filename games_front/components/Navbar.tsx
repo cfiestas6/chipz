@@ -63,3 +63,9 @@ export default function Navbar() {
         </div> 
     );
   }
+
+declare global {
+    interface Window {
+        ethereum?: any;
+    }
+}
