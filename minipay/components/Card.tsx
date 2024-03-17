@@ -51,6 +51,7 @@ export default function GameCard({ sport, date, a, b, x, teamA, teamB }: any) {
             account: address,
             args: [poolId - 1, '1', parseEther('1')],
         });
+        alert(tx)
 
         const receipt = await publicClient.waitForTransactionReceipt({
             hash: tx,
