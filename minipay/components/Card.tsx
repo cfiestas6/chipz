@@ -21,7 +21,7 @@ const publicClient = createPublicClient({
     transport: http(),
 });
 
-const contractAddress = "0x39b43751befc0454cbd233d95bb94afb1768efd006dca9e91a17eb4e8fd92f52";
+const contractAddress = "0x905B1E2b4dEC9984aE9589Aa8E1BB87DaFe5Cd51";
 
 export default function GameCard({ sport, date, a, b, x, teamA, teamB }: any) {
     
@@ -39,19 +39,13 @@ export default function GameCard({ sport, date, a, b, x, teamA, teamB }: any) {
             transport: custom(window.ethereum),
             chain: celoAlfajores,
         });
-
-        let poolId = await getPoolId();
-
-        poolId = Number(poolId) - 1;
-
         let [address] = await walletClient.getAddresses();
-
         const tx = await walletClient.writeContract({
             address: contractAddress,
             abi: abi,
-            functionName: "placeBet",
+            functionName: "createPool",
             account: address,
-            args: [poolId, '1', parseEther('0')],
+            args: ['1'],
         });
 
         const receipt = await publicClient.waitForTransactionReceipt({
