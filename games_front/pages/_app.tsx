@@ -49,9 +49,12 @@ const client = new QueryClient();
 function MyApp({ Component, pageProps }: AppProps) {
   const [isCelo, setIsCelo ] = useState(false);
   useEffect(() => {
-    if (typeof window !== "undefined" && window.ethereum && window.ethereum.isMiniPay) {
-      setIsCelo(true);
+    function checkCelo() {
+      if (typeof window !== "undefined" && window.ethereum && window.ethereum.isMiniPay) {
+        setIsCelo(true);
+      }
     }
+    checkCelo();
   }, []);
   if (!isCelo) {
   return (
