@@ -21,7 +21,6 @@ import {
 export default function Navbar() {
     const { isCelo } = useCelo();
     const { isConnected } = useAccount();
-    const [showConnectButton, setShowConnectButton] = useState<boolean>(true);
     const [address, setAddress] = useState<string | null>(null);
 
     const publicClient = createPublicClient({
@@ -31,7 +30,6 @@ export default function Navbar() {
 
     const getUserAddress = async () => {
         if (typeof window !== "undefined" && window.ethereum && window.ethereum.isMiniPay) {
-            setShowConnectButton(true);
             let walletClient = createWalletClient({
                 transport: custom(window.ethereum),
                 chain: celoAlfajores as Chain,
@@ -40,16 +38,35 @@ export default function Navbar() {
             let [address] = await walletClient.getAddresses();
             setAddress(address);
         }
-        else {
-            setShowConnectButton(false);
-        }
     };
 
     useEffect(() => {
         getUserAddress();
     }, []);
 
-    return (
+    if (isCelo) {
+        return (
+        <div className="navbar">
+        <div className="flex-1">
+            <Link href="/" className="font-heading text-xl">
+                 <Image height={45} width={45} src={logo} alt="Chipz" />
+            </Link>
+            <h1 className='text-2xl'>Chipz</h1>
+        </div>
+        <div className="flex align-center justify-center">
+            <Link href='/' className="font-overpass mx-5">ZK Games</Link>
+            <Link href='/'  className="font-overpass mx-5 ">Sports</Link>
+            <Link href='/'  className="font-overpass mx-5">Slots</Link>
+        </div>
+        <div className="flex-none ml-5">
+            <Link className='mr-10' href='/dashboard'>Dashboard</Link>
+        </div>
+        </div> 
+
+        )
+    }
+    else {
+       return (
         <div className="navbar">
         <div className="flex-1">
             <Link href="/" className="font-heading text-xl">
@@ -68,7 +85,8 @@ export default function Navbar() {
         </div>
         </div> 
     );
-  }
+    }
+   }
 
 declare global {
     interface Window {
