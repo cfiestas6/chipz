@@ -5,9 +5,9 @@ module.exports = {
   theme: {
     extend: {
       fontFamily: {
-        'playball': ['Playball', 'cursive'],
-        'overpass': ['Overpass', 'sans-serif'],
-        'heading': ['Courgette'],
+        'playball': ['sans-serif'],
+        'overpass': ['sans-serif'],
+        'heading': ['sans-serif'],
       },
       colors: {
         'white': '#fbfbfb',

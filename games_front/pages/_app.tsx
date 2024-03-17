@@ -6,7 +6,6 @@ import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { lightTheme, getDefaultConfig, Chain, RainbowKitProvider } from '@rainbow-me/rainbowkit';
 import { WagmiProvider } from 'wagmi';
 import { useState, useEffect } from 'react';
-import { CeloProvider } from '../contexts/useCelo';
 
 const chiliz = {
   id: 88882, 
@@ -62,12 +61,10 @@ function MyApp({ Component, pageProps }: AppProps) {
     <WagmiProvider config={config}>
       <QueryClientProvider client={client}>
         <RainbowKitProvider theme={lightTheme({accentColor: '#a12034'})} >
-          <CeloProvider>
           <>
           <Navbar />
           <Component {...pageProps} />
           </>
-          </ CeloProvider>
         </RainbowKitProvider>
       </QueryClientProvider>
     </WagmiProvider>

@@ -22,7 +22,7 @@ const Home: NextPage = () => {
 
       <div>
       <main className="container min-h-lvh mx-auto px-4">
-        <Hero title="Pool Admin Dashboard" subtitle={"Welcome " + address} />
+        <Hero title="Pool Admin Dashboard" subtitle='' />
         <PoolDashboard />
       </main>
     </div>

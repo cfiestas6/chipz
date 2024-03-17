@@ -73,22 +73,6 @@ export default function PoolDashboard() {
         }*/
     }
 
-    async function handleCreatePoolCelo(e: any) {
-        e.preventDefault();
-        let walletClient = createWalletClient({
-            transport: custom(window.ethereum),
-            chain: celoAlfajores as Chain,
-        });
-        let [address] = await walletClient.getAddresses();
-
-        writeContract({
-            address: celoContractAddress,
-            abi: contractABI,
-            functionName: "createPool",
-            account: address,
-            args: ['38973', '0x0cC32f87F0940727e1158C64E0e69fD14DaC7148', '0x5f223830171f04e3a66F43653F4472A540E7dacb', '10'],
-        });
-    }
 
     return (
         <div className="flex">
@@ -110,11 +94,10 @@ export default function PoolDashboard() {
         <h3 className="font-bold text-4xl">Create Bet Pool</h3>
         <p className="py-4">Select an event and set the amount of ETH</p>
 
-        <form onSubmit={ showConnectButton ? handleCreatePool : handleCreatePoolCelo }>
+        <form onSubmit={handleCreatePool}>
     <select className="select my-3 select-bordered ">
   <option disabled selected>Select Event</option>
   <option>Real Madrid VS FC Barcelona | 00/00/00 </option>
-  <option>[...]</option>
 </select>
         <p className='my-2'>Team A inital amount</p>
         <input type="text" placeholder="Team A amount (ETH)" className="input input-bordered w-full max-w-xs" />

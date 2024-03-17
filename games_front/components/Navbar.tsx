@@ -7,7 +7,6 @@ import logo from '/static/logo.svg'
 import { celoAlfajores } from "viem/chains";
 import { useState, useEffect } from 'react';
 import { Chain } from '@rainbow-me/rainbowkit';
-import { useCelo } from '../contexts/useCelo';
 import {
     createPublicClient,
     createWalletClient,
@@ -19,7 +18,6 @@ import {
 } from "viem";
 
 export default function Navbar() {
-    const { isCelo } = useCelo();
     const { isConnected } = useAccount();
     const [address, setAddress] = useState<string | null>(null);
 
@@ -44,49 +42,25 @@ export default function Navbar() {
         getUserAddress();
     }, []);
 
-    if (isCelo) {
-        return (
-        <div className="navbar">
-        <div className="flex-1">
-            <Link href="/" className="font-heading text-xl">
-                 <Image height={45} width={45} src={logo} alt="Chipz" />
-            </Link>
-            <h1 className='text-2xl'>Chipz</h1>
-        </div>
-        <div className="flex align-center justify-center">
-            <Link href='/' className="font-overpass mx-5">ZK Games</Link>
-            <Link href='/'  className="font-overpass mx-5 ">Sports</Link>
-            <Link href='/'  className="font-overpass mx-5">Slots</Link>
-        </div>
-        <div className="flex-none ml-5">
-            <Link className='mr-10' href='/dashboard'>Dashboard</Link>
-        </div>
-        </div> 
-
-        )
-    }
-    else {
        return (
-        <div className="navbar">
+        <div className="px-20 pt-10 navbar">
         <div className="flex-1">
-            <Link href="/" className="font-heading text-xl">
-                 <Image height={45} width={45} src={logo} alt="Chipz" />
+            <Link href="/">
+                 <Image height={55} width={55} src={logo} alt="Chipz" />
             </Link>
-            <h1 className='text-2xl'>Chipz</h1>
+            <h1 className='text-3xl'>Chipz</h1>
         </div>
         <div className="flex align-center justify-center">
-            <Link href='/' className="font-overpass mx-5">ZK Games</Link>
-            <Link href='/'  className="font-overpass mx-5 ">Sports</Link>
-            <Link href='/'  className="font-overpass mx-5">Slots</Link>
+            <Link href='/sports'  className="text-lg font-overpass mx-5 ">Open Bet Pools</Link>
+            <Link href='/'  className="text-lg font-overpass mx-5">Events</Link>
         </div>
         <div className="flex-none ml-5">
-            { isConnected && <Link className='mr-10' href='/dashboard'>Dashboard</Link>}
+            { isConnected && <Link className='mr-10 text-lg' href='/dashboard'>Dashboard</Link>}
             <ConnectButton label="Sign In" />
         </div>
         </div> 
     );
     }
-   }
 
 declare global {
     interface Window {
