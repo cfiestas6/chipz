@@ -92,8 +92,10 @@ export default function GameCard({ sport, date, a, b, x, teamA, teamB }: any) {
     <h3 className="font-bold text-lg">{sport} | {teamA}  VS  {teamB}</h3>
     <p className="py-4">For every 1 ETH you could get: {a} ETH</p>
     <div className="modal-action">
-        <input type="text" id='amount' name='amount' placeholder="Amount (ETH)" className="input input-bordered w-full max-w-xs" />
-        <button onClick={handleBet} className="btn">Bet</button>
+        <form onSubmit={handleBet}>
+            <input type="text" id='amount' name='amount' placeholder="Amount (ETH)" className="input input-bordered w-full max-w-xs" />
+            <button type='submit' className="btn">Bet</button>
+        </form>
     </div>
   </div>
     </dialog>

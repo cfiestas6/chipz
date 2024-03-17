@@ -5,39 +5,97 @@
 		"type": "constructor"
 	},
 	{
+		"anonymous": false,
 		"inputs": [
 			{
+				"indexed": false,
 				"internalType": "uint256",
-				"name": "",
+				"name": "poolId",
 				"type": "uint256"
 			},
 			{
+				"indexed": false,
 				"internalType": "address",
-				"name": "",
+				"name": "user",
 				"type": "address"
-			}
-		],
-		"name": "bets",
-		"outputs": [
+			},
 			{
+				"indexed": false,
+				"internalType": "enum BetPool.Outcome",
+				"name": "outcome",
+				"type": "uint8"
+			},
+			{
+				"indexed": false,
 				"internalType": "uint256",
 				"name": "amount",
 				"type": "uint256"
+			}
+		],
+		"name": "BetPlaced",
+		"type": "event"
+	},
+	{
+		"anonymous": false,
+		"inputs": [
+			{
+				"indexed": false,
+				"internalType": "uint256",
+				"name": "poolId",
+				"type": "uint256"
 			},
 			{
+				"indexed": false,
+				"internalType": "enum BetPool.Outcome",
+				"name": "winningOutcome",
+				"type": "uint8"
+			}
+		],
+		"name": "OutcomeSet",
+		"type": "event"
+	},
+	{
+		"anonymous": false,
+		"inputs": [
+			{
+				"indexed": false,
 				"internalType": "uint256",
-				"name": "team",
+				"name": "poolId",
+				"type": "uint256"
+			},
+			{
+				"indexed": false,
+				"internalType": "uint256",
+				"name": "matchId",
 				"type": "uint256"
 			}
 		],
-		"stateMutability": "view",
+		"name": "PoolCreated",
+		"type": "event"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "uint256",
+				"name": "poolId",
+				"type": "uint256"
+			},
+			{
+				"internalType": "enum BetPool.Outcome",
+				"name": "outcome",
+				"type": "uint8"
+			}
+		],
+		"name": "bet",
+		"outputs": [],
+		"stateMutability": "payable",
 		"type": "function"
 	},
 	{
 		"inputs": [
 			{
 				"internalType": "uint256",
-				"name": "_poolId",
+				"name": "poolId",
 				"type": "uint256"
 			}
 		],
@@ -50,39 +108,30 @@
 		"inputs": [
 			{
 				"internalType": "uint256",
-				"name": "_endTime",
-				"type": "uint256"
-			},
-			{
-				"internalType": "contract ISimplifiedERC20",
-				"name": "_token1",
-				"type": "address"
-			},
-			{
-				"internalType": "contract ISimplifiedERC20",
-				"name": "_token2",
-				"type": "address"
-			},
-			{
-				"internalType": "uint256",
-				"name": "_rewardAmount",
+				"name": "_matchId",
 				"type": "uint256"
 			}
 		],
 		"name": "createPool",
-		"outputs": [],
+		"outputs": [
+			{
+				"internalType": "uint256",
+				"name": "poolId",
+				"type": "uint256"
+			}
+		],
 		"stateMutability": "nonpayable",
 		"type": "function"
 	},
 	{
 		"inputs": [
 			{
-				"internalType": "address",
-				"name": "",
-				"type": "address"
+				"internalType": "uint256",
+				"name": "poolId",
+				"type": "uint256"
 			}
 		],
-		"name": "feesByToken",
+		"name": "getTotalBet",
 		"outputs": [
 			{
 				"internalType": "uint256",
@@ -97,23 +146,19 @@
 		"inputs": [
 			{
 				"internalType": "uint256",
-				"name": "_poolId",
+				"name": "",
 				"type": "uint256"
-			},
-			{
-				"internalType": "uint256",
-				"name": "_amount",
-				"type": "uint256"
-			},
-			{
-				"internalType": "contract ISimplifiedERC20",
-				"name": "_rewardToken",
-				"type": "address"
 			}
 		],
-		"name": "fundPool",
-		"outputs": [],
-		"stateMutability": "nonpayable",
+		"name": "matchToPoolId",
+		"outputs": [
+			{
+				"internalType": "uint256",
+				"name": "",
+				"type": "uint256"
+			}
+		],
+		"stateMutability": "view",
 		"type": "function"
 	},
 	{
@@ -122,6 +167,7 @@
 		"outputs": [
 			{
 				"internalType": "uint256",
+				"name": "",
 				"type": "uint256"
 			}
 		],
@@ -145,29 +191,6 @@
 		"inputs": [
 			{
 				"internalType": "uint256",
-				"name": "_poolId",
-				"type": "uint256"
-			},
-			{
-				"internalType": "uint256",
-				"name": "_team",
-				"type": "uint256"
-			},
-			{
-				"internalType": "uint256",
-				"name": "_amount",
-				"type": "uint256"
-			}
-		],
-		"name": "placeBet",
-		"outputs": [],
-		"stateMutability": "nonpayable",
-		"type": "function"
-	},
-	{
-		"inputs": [
-			{
-				"internalType": "uint256",
 				"name": "",
 				"type": "uint256"
 			}
@@ -175,39 +198,24 @@
 		"name": "pools",
 		"outputs": [
 			{
-				"internalType": "uint256",
-				"name": "endTime",
-				"type": "uint256"
-			},
-			{
-				"internalType": "contract ISimplifiedERC20",
-				"name": "token1",
-				"type": "address"
-			},
-			{
-				"internalType": "contract ISimplifiedERC20",
-				"name": "token2",
-				"type": "address"
+				"internalType": "bool",
+				"name": "exists",
+				"type": "bool"
 			},
 			{
 				"internalType": "uint256",
-				"name": "totalBetsToken1",
+				"name": "matchId",
 				"type": "uint256"
 			},
 			{
-				"internalType": "uint256",
-				"name": "totalBetsToken2",
-				"type": "uint256"
+				"internalType": "bool",
+				"name": "outcomeSet",
+				"type": "bool"
 			},
 			{
-				"internalType": "uint256",
-				"name": "rewardPool",
-				"type": "uint256"
-			},
-			{
-				"internalType": "int256",
-				"name": "outcome",
-				"type": "int256"
+				"internalType": "enum BetPool.Outcome",
+				"name": "winningOutcome",
+				"type": "uint8"
 			}
 		],
 		"stateMutability": "view",
@@ -217,34 +225,16 @@
 		"inputs": [
 			{
 				"internalType": "uint256",
-				"name": "_poolId",
+				"name": "poolId",
 				"type": "uint256"
 			},
 			{
-				"internalType": "uint256",
-				"name": "_winningTeam",
-				"type": "uint256"
+				"internalType": "enum BetPool.Outcome",
+				"name": "winningOutcome",
+				"type": "uint8"
 			}
 		],
 		"name": "setOutcome",
-		"outputs": [],
-		"stateMutability": "nonpayable",
-		"type": "function"
-	},
-	{
-		"inputs": [
-			{
-				"internalType": "contract ISimplifiedERC20",
-				"name": "_feeToken",
-				"type": "address"
-			},
-			{
-				"internalType": "uint256",
-				"name": "_amount",
-				"type": "uint256"
-			}
-		],
-		"name": "withdrawFees",
 		"outputs": [],
 		"stateMutability": "nonpayable",
 		"type": "function"
