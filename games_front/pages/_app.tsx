@@ -72,7 +72,7 @@ function MyApp({ Component, pageProps }: AppProps) {
     return (
       <>
       <QueryClientProvider client={client}>
-        <Navbar />
+        {/* <Navbar /> */}
         <Component {...pageProps} />
       </QueryClientProvider>
       </>
