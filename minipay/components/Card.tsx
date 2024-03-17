@@ -31,7 +31,7 @@ export default function GameCard({ sport, date, a, b, x, teamA, teamB }: any) {
             address: contractAddress,
             client: publicClient,
         }) as any;
-        const [poolId]: any = await contract.poolId() as any;
+        const poolId = await contract.poolId() as any;
         return poolId;
     }
     const handleBet = async () => {
@@ -49,7 +49,7 @@ export default function GameCard({ sport, date, a, b, x, teamA, teamB }: any) {
             abi: abi,
             functionName: "placeBet",
             account: address,
-            args: [poolId, '1', parseEther('1')],
+            args: [poolId - 1, '1', parseEther('1')],
         });
 
         const receipt = await publicClient.waitForTransactionReceipt({
