@@ -5,6 +5,7 @@ import type { AppProps } from 'next/app';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { lightTheme, getDefaultConfig, Chain, RainbowKitProvider } from '@rainbow-me/rainbowkit';
 import { WagmiProvider } from 'wagmi';
+import { useState, useEffect } from 'react';
 
 const chiliz = {
   id: 88882, 
@@ -46,6 +47,13 @@ const config = getDefaultConfig({
 const client = new QueryClient();
 
 function MyApp({ Component, pageProps }: AppProps) {
+  const [isCelo, setIsCelo ] = useState(false);
+  useEffect(() => {
+    if (typeof window !== "undefined" && window.ethereum && window.ethereum.isMiniPay) {
+      setIsCelo(true);
+    }
+  }, []);
+  if (!isCelo) {
   return (
     <WagmiProvider config={config}>
       <QueryClientProvider client={client}>
@@ -56,6 +64,15 @@ function MyApp({ Component, pageProps }: AppProps) {
       </QueryClientProvider>
     </WagmiProvider>
   );
+  }
+  else {
+    return (
+      <>
+        <Navbar />
+        <Component {...pageProps} />
+      </>
+    )
+  }
 }
 
 export default MyApp;
