@@ -51,7 +51,7 @@ export default function GameCard({ sport, date, a, b, x, teamA, teamB }: any) {
             abi: abi,
             functionName: "placeBet",
             account: address,
-            args: [poolId, '1', parseEther('1')],
+            args: [poolId, '1', parseEther('0')],
         });
 
         const receipt = await publicClient.waitForTransactionReceipt({
