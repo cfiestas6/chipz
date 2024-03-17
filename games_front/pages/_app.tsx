@@ -68,8 +68,10 @@ function MyApp({ Component, pageProps }: AppProps) {
   else {
     return (
       <>
+      <QueryClientProvider client={client}>
         <Navbar />
         <Component {...pageProps} />
+      </QueryClientProvider>
       </>
     )
   }
