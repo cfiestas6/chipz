@@ -42,6 +42,8 @@ export default function GameCard({ sport, date, a, b, x, teamA, teamB }: any) {
 
         let poolId = await getPoolId();
 
+        poolId = Number(poolId) - 1;
+
         let [address] = await walletClient.getAddresses();
 
         const tx = await walletClient.writeContract({
@@ -49,14 +51,14 @@ export default function GameCard({ sport, date, a, b, x, teamA, teamB }: any) {
             abi: abi,
             functionName: "placeBet",
             account: address,
-            args: [poolId - 1, '1', parseEther('1')],
+            args: [poolId, '1', parseEther('1')],
         });
-        alert(tx)
 
         const receipt = await publicClient.waitForTransactionReceipt({
             hash: tx,
         });
 
+        alert(receipt.status)
         return receipt;
     };
 
