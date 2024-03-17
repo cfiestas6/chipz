@@ -12,8 +12,8 @@ export default function Navbar(): any {
             <h1 className='text-2xl'>Chipz</h1>
         </div>
         <div className="flex align-center justify-center">
-            <Link href='/'  className="font-overpass mx-5 ">Sports</Link>
-            <Link href='/'  className="font-overpass mx-5 ">My bets</Link>
+            <Link href='/'  className="font-overpass px-3 ">Sports</Link>
+            <Link href='/'  className="font-overpass px-3 ">My bets</Link>
         </div>
         </div> 
     )
