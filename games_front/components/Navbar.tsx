@@ -7,6 +7,7 @@ import logo from '/static/logo.svg'
 import { celoAlfajores } from "viem/chains";
 import { useState, useEffect } from 'react';
 import { Chain } from '@rainbow-me/rainbowkit';
+import { useCelo } from '../contexts/useCelo';
 import {
     createPublicClient,
     createWalletClient,
@@ -18,6 +19,7 @@ import {
 } from "viem";
 
 export default function Navbar() {
+    const { isCelo } = useCelo();
     const { isConnected } = useAccount();
     const [showConnectButton, setShowConnectButton] = useState<boolean>(true);
     const [address, setAddress] = useState<string | null>(null);
@@ -62,7 +64,7 @@ export default function Navbar() {
         </div>
         <div className="flex-none ml-5">
             { isConnected && <Link className='mr-10' href='/dashboard'>Dashboard</Link>}
-            {!showConnectButton && <ConnectButton label="Sign In" />}
+            {!isCelo && <ConnectButton label="Sign In" />}
         </div>
         </div> 
     );
